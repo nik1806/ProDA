@@ -83,10 +83,10 @@ def Posterize(img, v, max_v, bias=0):
 #     img_t = transforms.ToTensor()(img)
 #     H = img_t.shape[1]
 #     W = img_t.shape[2]
-#     theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi), 0], [np.sin(v/180*np.pi), np.cos(v/180*np.pi), 0]]).astype(np.float)
+#     theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi), 0], [np.sin(v/180*np.pi), np.cos(v/180*np.pi), 0]]).astype(np.float64)
 #     theta[0,1] = theta[0,1]*H/W
 #     theta[1,0] = theta[1,0]*W/H
-#     #theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi)], [np.sin(v/180*np.pi), np.cos(v/180*np.pi)]]).astype(np.float)
+#     #theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi)], [np.sin(v/180*np.pi), np.cos(v/180*np.pi)]]).astype(np.float64)
 #     theta = torch.Tensor(theta).unsqueeze(0)
 
 #     # meshgrid_x, meshgrid_y = torch.meshgrid(torch.arange(W, dtype=torch.float), torch.arange(H, dtype=torch.float))
@@ -259,15 +259,15 @@ def affine_sample(tensor, v, type):
     # tensor: B*C*H*W
     # v: scalar, translation param
     if type == 'Rotate':
-        theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi), 0], [np.sin(v/180*np.pi), np.cos(v/180*np.pi), 0]]).astype(np.float)
+        theta = np.array([[np.cos(v/180*np.pi), -np.sin(v/180*np.pi), 0], [np.sin(v/180*np.pi), np.cos(v/180*np.pi), 0]]).astype(np.float64)
     elif type == 'ShearX':
-        theta = np.array([[1, v, 0], [0, 1, 0]]).astype(np.float)
+        theta = np.array([[1, v, 0], [0, 1, 0]]).astype(np.float64)
     elif type == 'ShearY':
-        theta = np.array([[1, 0, 0], [v, 1, 0]]).astype(np.float)
+        theta = np.array([[1, 0, 0], [v, 1, 0]]).astype(np.float64)
     elif type == 'TranslateX':
-        theta = np.array([[1, 0, v], [0, 1, 0]]).astype(np.float)
+        theta = np.array([[1, 0, v], [0, 1, 0]]).astype(np.float64)
     elif type == 'TranslateY':
-        theta = np.array([[1, 0, 0], [0, 1, v]]).astype(np.float)
+        theta = np.array([[1, 0, 0], [0, 1, v]]).astype(np.float64)
 
     H = tensor.shape[2]
     W = tensor.shape[3]

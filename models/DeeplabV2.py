@@ -171,7 +171,7 @@ class ResNetPair5(nn.Module):
     def _make_pred_layer(self, block, inplanes, dilation_series, padding_series, num_classes):
         return block(inplanes, dilation_series, padding_series, num_classes)
 
-    def forward(self, x, source=False):
+    def forward(self, x, ssl=False, lbl=None, source=False):
         N, C, H, W = x.shape
         if source:
             x = self.conv1(x)
@@ -197,7 +197,9 @@ class ResNetPair5(nn.Module):
         # return x1, feature
         return out_dict
 
-    def get_1x_lr_params_NOscale(self):
+    # def get_1x_lr_params_NOscale(self):
+
+    def get_1x_lr_params(self): ##!! renamed
         b = []
         b.append(self.conv1)
         b.append(self.target_conv1)

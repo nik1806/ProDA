@@ -36,7 +36,9 @@ class Compose(object):
         if mask1 is not None:
             assert (img.size == mask1.size)
         for a in self.augmentations:
+            # print(a)
             img, mask, mask1, lpsoft, params = a(img, mask, mask1, lpsoft, params)
+            # print("Correct aug")
             # print(img.size)
 
         if self.PIL2Numpy:
