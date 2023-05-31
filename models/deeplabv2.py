@@ -370,7 +370,8 @@ def Deeplab(BatchNorm, num_classes=21, freeze_bn=False, restore_from=None, initi
 
     if restore_from is not None: 
         checkpoint = torch.load(restore_from)
-        model.load_state_dict(checkpoint['ResNet101']["model_state"])
+        model.load_state_dict(checkpoint)
+        # model.load_state_dict(checkpoint['ResNet101']["model_state"])
         #model.load_state_dict(checkpoint['ema'])
     
     return model

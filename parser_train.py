@@ -5,7 +5,7 @@ import os
 import json
 
 def parser_(parser):
-    parser.add_argument('--root', type=str, default='/mnt/blob', help='root path')
+    parser.add_argument('--root', type=str, default='/home/paliwal/Desktop/', help='root path')
     parser.add_argument('--model_name', type=str, default='deeplabv2', help='deeplabv2')
     parser.add_argument('--name', type=str, default='gta2city', help='pretrain source model')
     parser.add_argument('--lr', type=float, default=0.0001)
@@ -30,8 +30,8 @@ def parser_(parser):
     #data
     parser.add_argument('--src_dataset', type=str, default='gta5', help='gta5|synthia')
     parser.add_argument('--tgt_dataset', type=str, default='cityscapes', help='cityscapes')
-    parser.add_argument('--src_rootpath', type=str, default='Dataset/GTA5')
-    parser.add_argument('--tgt_rootpath', type=str, default='Dataset/cityscapes')
+    parser.add_argument('--src_rootpath', type=str, default='/share_chairilg/data/gta5') ##!!
+    parser.add_argument('--tgt_rootpath', type=str, default='/share_chairilg/data/cityscapes/uda_variant')
     parser.add_argument('--path_LP', type=str, default='Pseudo/pretrain_warmup/LP0.95', help='path of probability-based PLA')
     parser.add_argument('--path_soft', type=str, default='Pseudo/pretrain_warmup_soft/LP0.0', help='soft pseudo label for rectification')
     parser.add_argument("--train_thred", default=0, type=float)
@@ -73,10 +73,10 @@ def parser_(parser):
 
 def relative_path_to_absolute_path(opt):
     opt.rcrop = [int(opt.rcrop.split(',')[0]), int(opt.rcrop.split(',')[1])]
-    opt.resume_path = os.path.join(opt.root, 'Code/ProDA', opt.resume_path)
+    opt.resume_path = os.path.join(opt.root, 'ProDA', opt.resume_path)
     opt.src_rootpath = os.path.join(opt.root, opt.src_rootpath)
     opt.tgt_rootpath = os.path.join(opt.root, opt.tgt_rootpath)
-    opt.path_LP = os.path.join(opt.root, 'Code/ProDA', opt.path_LP)
-    opt.path_soft = os.path.join(opt.root, 'Code/ProDA', opt.path_soft)
-    opt.logdir = os.path.join(opt.root, 'Code/ProDA', 'logs', opt.name)
+    opt.path_LP = os.path.join(opt.root, 'ProDA', opt.path_LP)
+    opt.path_soft = os.path.join(opt.root, 'ProDA', opt.path_soft)
+    opt.logdir = os.path.join(opt.root, 'ProDA', 'logs', opt.name)
     return opt

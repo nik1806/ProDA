@@ -27,7 +27,9 @@ def test(opt, logger):
     datasets = create_dataset(opt, logger) 
 
     if opt.model_name == 'deeplabv2':
-        checkpoint = torch.load(opt.resume_path)['ResNet101']["model_state"]
+        ##!! accomodate DASS checkpoint here
+        # checkpoint = torch.load(opt.resume_path)['ResNet101']["model_state"]
+        checkpoint = torch.load(opt.resume_path)
         model = adaptation_modelv2.CustomModel(opt, logger)
         model.BaseNet.load_state_dict(checkpoint)
 
@@ -50,7 +52,7 @@ def label2rgb(func, label):
     return rgbs
 
 def validate(valid_loader, device, model, opt):
-    ori_LP = os.path.join(opt.root, 'Code/ProDA', opt.save_path, opt.name)
+    ori_LP = os.path.join(opt.root, 'ProDA', opt.save_path, opt.name)
 
     if not os.path.exists(ori_LP):
         os.makedirs(ori_LP)

@@ -8,7 +8,8 @@ import torch
 import numpy as np
 
 from models.sync_batchnorm import SynchronizedBatchNorm2d, DataParallelWithCallback
-from models.deeplabv2 import Deeplab
+# from models.deeplabv2 import Deeplab
+from models.DeeplabV2 import Deeplab
 from models.discriminator import FCDiscriminator
 from .utils import freeze_bn, get_scheduler, cross_entropy2d
 from data.randaugment import affine_sample
@@ -53,7 +54,7 @@ class CustomModel():
             self.BaseNet = Deeplab(BatchNorm, num_classes=self.class_numbers, freeze_bn=False, restore_from=restore_from)
         elif self.opt.student_init == 'simclr':
             self.BaseNet = Deeplab(BatchNorm, num_classes=self.class_numbers, freeze_bn=False, restore_from=restore_from, 
-                initialization=os.path.join(opt.root, 'Code/ProDA', 'pretrained/simclr/r101_1x_sk0.pth'), bn_clr=opt.bn_clr)
+                initialization=os.path.join(opt.root, 'ProDA', 'pretrained/simclr/r101_1x_sk0.pth'), bn_clr=opt.bn_clr)
         else:
             self.BaseNet = Deeplab(BatchNorm, num_classes=self.class_numbers, freeze_bn=False, restore_from=restore_from)
             
