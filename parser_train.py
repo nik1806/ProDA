@@ -11,7 +11,7 @@ def parser_(parser):
     parser.add_argument('--lr', type=float, default=0.0001)
     parser.add_argument('--bs', type=int, default=2) ##!! change to original 4 later
     parser.add_argument('--freeze_bn', action='store_true')
-    parser.add_argument('--epochs', type=int, default=1) ##
+    parser.add_argument('--epochs', type=int, default=3) ##
     parser.add_argument('--train_iters', type=int, default=90000)
     parser.add_argument('--moving_prototype', action='store_true')
     parser.add_argument('--bn', type=str, default='sync_bn', help='sync_bn|bn|gn|adabn')
@@ -43,7 +43,7 @@ def parser_(parser):
     parser.add_argument('--hflip', type=float, default=0.5, help='random flip probility')
 
     parser.add_argument('--n_class', type=int, default=19, help='19|16|13')
-    parser.add_argument('--num_workers', type=int, default=1)
+    parser.add_argument('--num_workers', type=int, default=6)
     #loss
     parser.add_argument('--gan', type=str, default='LS', help='Vanilla|LS')
     parser.add_argument('--adv', type=float, default=0.01, help='loss weight of adv loss, only use when stage=warm_up')

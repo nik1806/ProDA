@@ -8,7 +8,10 @@ import scipy.misc as m
 from tqdm import tqdm
 
 from torch.utils import data
-from PIL import Image
+# from PIL import Image
+from PIL import Image, ImageFile
+## fix: OSError: unrecognized data stream contents when reading image file
+ImageFile.LOAD_TRUNCATED_IMAGES = True 
 
 from data.augmentations import *
 from data.base_dataset import BaseDataset
